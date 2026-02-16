@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Tweaker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="header">
+    <div class="title-group">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path
+          d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+        </path>
+      </svg>
+      <div>
+        <h1 style="margin: 0; line-height: 1.2;">TFLab Web Tweaker</h1>
+        <a href="https://www.techfixerlab.com/" target="_blank"
+          style="display: block; font-size: 10px; color: #febc01; text-decoration: none;">Powered by TechFixerLab</a>
+      </div>
+    </div>
+    <button id="theme-toggle" class="btn-icon" title="Toggle Theme">
+      <!-- Sun Icon (for dark mode) -->
+      <svg id="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <!-- Moon Icon (for light mode) -->
+      <svg id="icon-moon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Section 1: Office Fixes (Global) -->
+  <div class="card" id="office-section">
+    <span class="card-title">MS Office Header</span>
+    <div class="row">
+      <span class="label-text">Hide Header</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="global-office-fix">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Section 2: Domain Settings -->
+  <div class="card">
+    <span class="card-title">Current Domain</span>
+    <div id="current-domain-display" class="current-domain">Loading...</div>
+    <div class="row">
+      <span class="label-text">Force Links to Same Tab</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="force-same-tab">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Section 3: Element Hider -->
+  <div class="card">
+    <span class="card-title">Custom Element Hider</span>
+    <div class="input-group">
+      <input type="text" id="selector-input" placeholder=".nav-bar, #ads...">
+      <button id="add-selector-btn" class="btn">Add</button>
+    </div>
+
+    <div id="selector-list" class="selector-list">
+      <!-- List Items will be injected here -->
+      <div class="empty-state">No custom rules for this domain</div>
+    </div>
+  </div>
+
+  <!-- Section 4: Data Management -->
+  <div class="card">
+    <span class="card-title">Settings Data</span>
+    <div class="row" style="gap: 10px;">
+      <button id="export-btn" class="btn" style="flex: 1;">Export Config</button>
+      <button id="import-btn" class="btn" style="flex: 1;">Import Config</button>
+      <input type="file" id="import-file" accept=".json" style="display: none;">
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>
