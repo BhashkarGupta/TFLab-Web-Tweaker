@@ -1,0 +1,99 @@
+{
+  "global_office_fix": true,
+  "settings": {
+    "excel.cloud.microsoft": {
+      "customSelectors": [
+        {
+          "active": true,
+          "id": 1771796589076,
+          "selector": "#root > div > div > footer"
+        },
+        {
+          "active": true,
+          "id": 1771796716592,
+          "selector": "#rightSection > div:nth-child(1) > button"
+        }
+      ],
+      "forceSameTab": true
+    },
+    "m365.cloud.microsoft": {
+      "customSelectors": [
+        {
+          "active": true,
+          "id": 1771796857488,
+          "selector": "#root > div > div.___nr6qmv0.f22iagw.f1063pyq.fly5x3f.femoar2 > div:nth-child(1) > div > div > div > div > div.fui-InlineDrawer.rkjj3x6.fui-Drawer.fui-NavDrawer.fai-CopilotNavDrawer.___ywmm1e0.f1xteiwb.f1vgc2s3.fvfyk4.f1exhnwo.f16xq7d1.f3gca8.f1uizy3q.f5yzyt.fx3omr.f1f5gg8d.flk2ux3.f22iagw.f1vx9l62.f1ewtqcl.f1a3p1vp.f1euv43f.f1wg2m86.f1tgq25y.f1m2l7wm.f4ullqw.fhlp1w2.f13lr3k6.f12uvujy.f19rqxuy.fx0jucd.f1eon8pw.f1ee5qza.fumlgkt.fdfl8u1.fz8acn1.fekzhk3.f1tta858.fw0i6q2 > footer > div > div > div.___17bnmwu.f17mccla.f1a4p937"
+        }
+      ]
+    },
+    "onedrive.live.com": {
+      "forceSameTab": true
+    },
+    "onenote.cloud.microsoft": {
+      "customSelectors": [
+        {
+          "active": true,
+          "id": 1771796626242,
+          "selector": "#root > div > div > footer"
+        },
+        {
+          "active": true,
+          "id": 1771796806386,
+          "selector": "#rightSection > div:nth-child(1) > button"
+        }
+      ],
+      "forceSameTab": true
+    },
+    "outlook.live.com": {
+      "customSelectors": [
+        {
+          "active": true,
+          "id": 1771795582676,
+          "selector": "#MainModule > div > div > div.GssDD"
+        }
+      ]
+    },
+    "powerpoint.cloud.microsoft": {
+      "customSelectors": [
+        {
+          "active": true,
+          "id": 1771796600988,
+          "selector": "#root > div > div > footer"
+        },
+        {
+          "active": true,
+          "id": 1771796743952,
+          "selector": "#rightSection > div:nth-child(1) > button"
+        }
+      ],
+      "forceSameTab": true
+    },
+    "teams.live.com": {
+      "customSelectors": [
+        {
+          "active": true,
+          "id": 1771796036259,
+          "selector": "#app > div > div > div > div.fui-AppLayoutArea.___dy8dsw0.f1ewtqcl.f1immsc2.f6dzj5z.f10pi13n.feiuha1.ft6cabi.f1w2zrqi.fibhlys.fav8ueh.f19l78gq.f1asspy.ff8gh7k.fyb0dc9.f1760aly.f1pvy21g.fb2y73i.ffoc445.f4iuumn.f1ceumfd.f1xzzuro.fmq4len.f180iimo.f1w2pcvc.f19xy3ti.f10vmkzp.f1bvojbv.f1o6stv4.f1gyt73z.fwiofl5.f15jae4m.f1gh6hdm.f145mhtz.fsxv6q3.fxy6710.f1hwi66u.f1w3aflr.f19sjy7d.f19ayll7.f1xunuz7.fl4td7.f12vwdbn.fvu9lbx.f6s8nf5.f1a3p1vp.fotwiy1.f1xojh9j.fwmxuea.f1305ibp.f1jtucq0.f1sy8t6p.f1xcw3jt > div > div > div.fui-Flex.___4785t10.f22iagw.f1vx9l62.f122n59.f9c4gz4.fly5x3f.f1l02sjl.f6p0d5s > button"
+        }
+      ]
+    },
+    "word.cloud.microsoft": {
+      "customSelectors": [
+        {
+          "active": true,
+          "id": 1771796577068,
+          "selector": "#root > div > div > footer"
+        },
+        {
+          "active": true,
+          "id": 1771796753679,
+          "selector": "#rightSection > div:nth-child(1) > button"
+        }
+      ],
+      "forceSameTab": true
+    },
+    "www.photopea.com": {
+      "forceSameTab": false
+    }
+  },
+  "theme": "light"
+}

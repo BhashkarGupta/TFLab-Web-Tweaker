@@ -1,8 +1,4 @@
 chrome.webNavigation.onCommitted.addListener(async (details) => {
-    // We inject on committed to capture early window.open usage if possible, 
-    // though the observer will handle dynamically added links.
-    // We allow all frames because Office apps use iframes.
-
     injectLogic(details.tabId, details.frameId, details.url);
 });
 
@@ -29,9 +25,8 @@ async function injectLogic(tabId, frameId, urlStr) {
     }
 }
 
-// Re-inject on setting change? 
+// Re-inject on setting change 
 chrome.storage.onChanged.addListener((changes, area) => {
     if (area === 'sync' && changes.settings) {
-        // Optional: Implement dynamic re-injection if needed
     }
 });

@@ -125,9 +125,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function exportSettings() {
         chrome.storage.sync.get(null, (items) => {
-            // Also include local theme setting? User asked for "all the site at once".
-            // Typically sync storage contains site configs. Local has theme.
-            // Let's grab both for a full backup.
             chrome.storage.local.get(['theme'], (localItems) => {
                 const exportData = {
                     ...items,
@@ -267,13 +264,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const slider = document.createElement('span');
             slider.className = 'slider';
-            // Adjust slider pseudo-element for smaller size via inline style or class modification? 
-            // Let's just scale the switch slightly or leave as is. 
-            // To make it look good, I should probably add a specific class for small toggles or adjust CSS.
-            // For now, I'll rely on the class but maybe scale it down using transform if needed, but per CSS it's fixed size.
-            // Let's create a "small-switch" class in CSS effectively or just override styles.
-            // Actually, let's keep it consistent size or slightly smaller.
-            // I'll leave it standard size for hit area, or maybe just `transform: scale(0.8)`
+            // Adjust slider pseudo-element for smaller size via inline style or class modification
             toggleLabel.style.transform = "scale(0.8)";
 
 

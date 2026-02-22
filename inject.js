@@ -1,5 +1,5 @@
 (function () {
-    // Check if we already injected to avoid duplicates
+    // Check if already injected to avoid duplicates
     if (window.webTweakerOpenOverridden) return;
     window.webTweakerOpenOverridden = true;
 

@@ -20,8 +20,6 @@
         .o365cs-base
         { display: none !important; }
     `;
-    // Being a bit aggressive with the selector list to ensure it hits.
-    // Refined based on prompt: "#Header, #AppHeaderPanel, #WacFrame_Excel_0_Header, div[data-role='header']"
 
     let styleElement = null;
     let customStyleElement = null;
@@ -31,7 +29,6 @@
 
     // 1. Initial Load
     const data = await chrome.storage.sync.get(['global_office_fix', 'settings']);
-    // Window.open override is now handled by background.js (MAIN world injection)
     applySettings(data);
 
     // 2. Storage Listener (Real-time updates)
@@ -57,9 +54,6 @@
         handleCustomSelectors(domainSettings.customSelectors || []);
 
         // C. Force Same Tab handled by background.js, 
-        // but we assume dynamic toggling might need reload for window.open,
-        // or we could signal background? 
-        // For now, removing isolated world implementation.
     }
 
     function handleOfficeFix(hostname, isEnabled) {
