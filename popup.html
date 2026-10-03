@@ -76,6 +76,7 @@
     <div class="input-group">
       <input type="text" id="selector-input" placeholder=".nav-bar, #ads...">
       <button id="add-selector-btn" class="btn">Add</button>
+      <button id="cancel-selector-edit-btn" class="btn btn-secondary hidden" title="Cancel edit">✕</button>
     </div>
 
     <div id="selector-list" class="selector-list">
@@ -84,7 +85,76 @@
     </div>
   </div>
 
-  <!-- Section 4: Data Management -->
+  <!-- Section 4: Custom JavaScript -->
+  <div class="card" id="js-section">
+    <div class="card-header-row">
+      <span class="card-title" style="margin-bottom: 0;">Custom JavaScript</span>
+      <button id="open-add-script-btn" class="btn btn-sm">+ Add Script</button>
+    </div>
+
+    <!-- Script Editor Drawer (Hidden by default) -->
+    <div id="script-editor" class="script-editor hidden">
+      <div class="editor-header">
+        <span id="editor-title" class="editor-title">New Script</span>
+        <button id="close-editor-btn" class="btn-icon" title="Close editor">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="script-name-input">Script Name</label>
+        <input type="text" id="script-name-input" placeholder="e.g., Auto Click Button, Dark Mode Fix">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group flex-1">
+          <label class="form-label" for="script-autorun-input">Auto-run on Load</label>
+          <div class="toggle-wrapper">
+            <label class="toggle-switch toggle-sm">
+              <input type="checkbox" id="script-autorun-input" checked>
+              <span class="slider"></span>
+            </label>
+            <span class="toggle-hint" id="autorun-hint">Enabled</span>
+          </div>
+        </div>
+        <div class="form-group flex-1">
+          <label class="form-label" for="script-runat-select">Timing</label>
+          <select id="script-runat-select" class="form-select">
+            <option value="dom_ready">DOM Ready</option>
+            <option value="start">Immediate (Start)</option>
+            <option value="load">Page Loaded (Load)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="code-label-row">
+          <label class="form-label" for="script-code-input">JavaScript Code</label>
+          <button id="test-run-btn" class="btn-link" title="Test execute on current active tab">▶ Test Run</button>
+        </div>
+        <textarea id="script-code-input" spellcheck="false" placeholder="// Enter JavaScript code here...
+// e.g.:
+// document.querySelector('.ad-banner')?.remove();
+// console.log('Web Tweaker script executed on', location.hostname);"></textarea>
+      </div>
+
+      <div class="editor-footer">
+        <button id="cancel-script-btn" class="btn btn-secondary">Cancel</button>
+        <button id="save-script-btn" class="btn btn-primary">Save Script</button>
+      </div>
+    </div>
+
+    <!-- Script List -->
+    <div id="script-list" class="script-list">
+      <!-- Injected list items -->
+      <div class="empty-state">No custom scripts for this domain</div>
+    </div>
+  </div>
+
+  <!-- Section 5: Data Management -->
   <div class="card">
     <span class="card-title">Settings Data</span>
     <div class="row" style="gap: 10px;">
@@ -93,6 +163,9 @@
       <input type="file" id="import-file" accept=".json" style="display: none;">
     </div>
   </div>
+
+  <!-- Toast Feedback Notification -->
+  <div id="toast" class="toast hidden"></div>
 
   <script src="popup.js"></script>
 </body>

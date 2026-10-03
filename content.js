@@ -29,20 +29,33 @@
 
     // 1. Initial Load
     const data = await chrome.storage.sync.get(['global_office_fix', 'settings']);
-    applySettings(data);
+    applySettings(data, false);
 
     // 2. Storage Listener (Real-time updates)
     chrome.storage.onChanged.addListener((changes, area) => {
         if (area === 'sync') {
             chrome.storage.sync.get(['global_office_fix', 'settings'], (newData) => {
-                applySettings(newData);
+                applySettings(newData, true);
             });
+        }
+    });
+
+    // 3. Message Listener for On-Demand Script Execution
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        if (request.action === 'EXECUTE_SCRIPT_CONTENT') {
+            try {
+                runScriptCode(request.code, request.name || 'Manual Script');
+                sendResponse({ success: true });
+            } catch (err) {
+                sendResponse({ success: false, error: err.message });
+            }
+            return true;
         }
     });
 
     // --- Functions ---
 
-    function applySettings(data) {
+    function applySettings(data, isUpdate = false) {
         const hostname = window.location.hostname;
         const globalOfficeFix = data.global_office_fix !== false; // Default true
         const domainSettings = (data.settings && data.settings[hostname]) || {};
@@ -53,7 +66,10 @@
         // B. Custom Element Hider
         handleCustomSelectors(domainSettings.customSelectors || []);
 
-        // C. Force Same Tab handled by background.js, 
+        // C. Custom JavaScript Execution
+        handleCustomScripts(domainSettings.customScripts || [], isUpdate);
+
+        // D. Force Same Tab handled by background.js
     }
 
     function handleOfficeFix(hostname, isEnabled) {
@@ -98,4 +114,51 @@
         }
     }
 
+    function handleCustomScripts(scripts, isUpdate = false) {
+        // Only trigger auto-run scripts on initial page load to prevent duplicate runs on settings change
+        if (isUpdate) return;
+        if (!scripts || !Array.isArray(scripts) || scripts.length === 0) return;
+
+        const autoScripts = scripts.filter(s => s.active && s.autoRun !== false);
+
+        autoScripts.forEach(script => {
+            const timing = script.runAt || 'dom_ready';
+
+            if (timing === 'start') {
+                runScriptCode(script.code, script.name);
+            } else if (timing === 'load') {
+                if (document.readyState === 'complete') {
+                    runScriptCode(script.code, script.name);
+                } else {
+                    window.addEventListener('load', () => {
+                        runScriptCode(script.code, script.name);
+                    }, { once: true });
+                }
+            } else {
+                // 'dom_ready' (default)
+                if (document.readyState !== 'loading') {
+                    runScriptCode(script.code, script.name);
+                } else {
+                    document.addEventListener('DOMContentLoaded', () => {
+                        runScriptCode(script.code, script.name);
+                    }, { once: true });
+                }
+            }
+        });
+    }
+
+    function runScriptCode(code, name = 'Custom Script') {
+        if (!code || typeof code !== 'string' || !code.trim()) return;
+        try {
+            const scriptEl = document.createElement('script');
+            scriptEl.className = 'web-tweaker-injected-script';
+            scriptEl.textContent = `/* [Web Tweaker] ${(name || 'Custom Script').replace(/[*\/]/g, '')} */\n(function() {\n  try {\n${code}\n  } catch (err) {\n    console.error("[Web Tweaker] Runtime error in '${(name || 'Script').replace(/'/g, "\\'")}':", err);\n  }\n})();`;
+            (document.head || document.documentElement).appendChild(scriptEl);
+            scriptEl.remove();
+        } catch (e) {
+            console.error(`[Web Tweaker] Injection failed for '${name}':`, e);
+        }
+    }
+
 })();
+

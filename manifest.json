@@ -1,13 +1,14 @@
 {
   "manifest_version": 3,
   "name": "TFLab Web Tweaker",
-  "version": "1.0.0",
-  "description": "Hides MS Office PWA headers, force same-tab navigation, and hide custom elements.",
+  "version": "1.1.0",
+  "description": "Hides MS Office PWA headers, force same-tab navigation, custom CSS element hider, and custom JavaScript injection.",
   "permissions": [
     "storage",
     "activeTab",
     "scripting",
-    "webNavigation"
+    "webNavigation",
+    "userScripts"
   ],
   "host_permissions": [
     "*://*/*"
